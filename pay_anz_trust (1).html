@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ANZ 입금 안내</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231e40af'/%3E%3Cpath d='M20 28v-6a12 12 0 1 1 24 0v6h2a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V32a4 4 0 0 1 4-4h2zm6 0h12v-6a6 6 0 1 0-12 0v6z' fill='white'/%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#111827;
+      --brand:#1e40af; /* deep blue */
+      --brand2:#3b82f6; /* accent blue */
+      --ok:#10b981;
+      --ink:#e5e7eb;
+      --muted:#97a2b0;
+      --line:#1f2937;
+      --card:#0b1220;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+      color:var(--ink);
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(59,130,246,.25), transparent 60%),
+                  radial-gradient(1200px 800px at -10% 120%, rgba(30,64,175,.35), transparent 60%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    .wrap{min-height:100%; display:flex; align-items:center; justify-content:center; padding:24px}
+    .card{
+      width:100%; max-width:520px;
+      background:rgba(17,24,39,.8);
+      border:1px solid var(--line);
+      border-radius:20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:16px 18px; border-bottom:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(30,64,175,.35), transparent);
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
+    .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand2); box-shadow:0 0 0 4px rgba(59,130,246,.2)}
+    .secure{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted)}
+    .secure svg{opacity:.9}
+    .body{padding:18px}
+    .badge{display:inline-flex; gap:8px; align-items:center; font-size:12px; color:var(--muted); background:#0b1220; border:1px solid var(--line); padding:8px 10px; border-radius:999px}
+    .section{margin-top:14px}
+    .label{font-size:12px; color:var(--muted); margin:8px 0 6px}
+    .box{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      background:#0f172a; border:1px solid var(--line); border-radius:14px; padding:14px;
+    }
+    .val{font-size:20px; font-weight:800; letter-spacing:.4px; word-break:break-all}
+    .val.mono{font-family: ui-monospace,SFMono-Regular,Consolas,Monaco,monospace}
+    button{
+      appearance:none; border:0; cursor:pointer; border-radius:12px; padding:12px 14px;
+      font-weight:700; font-size:15px;
+    }
+    .ghost{background:#0b1220; color:var(--ink); border:1px solid var(--line)}
+    .pri{background:linear-gradient(90deg, var(--brand), var(--brand2)); color:white}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px}
+    .help{color:var(--muted); font-size:12px; line-height:1.5; margin-top:10px}
+    .qr{display:flex; justify-content:center; margin-top:16px}
+    .qr img{width:220px; height:220px; background:#fff; border-radius:14px; border:1px solid var(--line)}
+    .foot{padding:12px 18px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; display:flex; justify-content:space-between; align-items:center}
+    .toast{position:fixed; left:50%; transform:translateX(-50%); bottom:18px; background:var(--ok); color:#06281f; padding:10px 14px; border-radius:999px; font-size:14px; box-shadow:0 10px 30px rgba(0,0,0,.45); opacity:0; transition:opacity .25s}
+    .toast.show{opacity:1}
+    @media (max-width:420px){ .row{grid-template-columns:1fr} .val{font-size:18px} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div class="brand"><span class="dot"></span><span>ANZ • Payment</span></div>
+        <div class="secure">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 10V7a5 5 0 0 1 10 0v3m-9 0h8a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span>안전한 안내</span>
+        </div>
+      </div>
+
+      <div class="body">
+        <span class="badge">은행: <b style="margin-left:6px;color:#fff">ANZ</b></span>
+
+        <div class="section">
+          <div class="label">계좌번호</div>
+          <div class="box">
+            <div class="val mono" id="acc">06-0293-0328156-02</div>
+            <button class="ghost" id="copyAcc">복사</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="label">예금주</div>
+          <div class="box">
+            <div class="val" id="name">KYOUNGHEE LEE</div>
+            <button class="ghost" id="copyName">복사</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="pri" id="copyBothNL">둘 다 복사(줄바꿈)</button>
+          <button class="pri" id="copyBothTAB">둘 다 복사(탭)</button>
+        </div>
+
+        <p class="help">※ ANZ/타 은행 앱은 보통 <b>계좌번호</b> 칸만 붙여넣기를 허용합니다. 붙여넣은 뒤, 받는사람 이름이 <b>KYOUNGHEE LEE</b>로 자동검증되는지 확인하세요. 자동 분리가 되지 않으면 위의 각 복사 버튼을 사용하세요.</p>
+
+        <div class="qr">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUgAAAFIAQAAAAAab1qeAAACF0lEQVR4nO1aXW/EMAizp/v/f9l7MCTZPUztpF5Dx7SP7mIpAQHGNBQOfn0dBTaykY1s5L9AvgCAfhYAUIQAigK1rFSxaAN/hicBCoL/EJTmyt3nLIYkCYAiHZ12IcfKtbs/FklpSX5+ePfHIcOHbkmlX5BX7P4IpOsnFt+Zg0S4lo6VKhbt4M/IbIoiIIqK3zPnq1h0L5J6+8/+fPv8qt2fiyRhIpfkZGeEbfP7eSSJQUCc32KG7Cbn3B9JASAcj+7lqaykIZgMqmLRDkjBiW65ydHMZ5xeu/uTkK98cHhacNLkzpn4t5+zCjJ4nCPVIxoRjyPty1i0gT9zlKRRTuN5HTxVsWgHpPkdpEAnfo6WhFRMO5yzCtJqCEqtKYz2s/XmKSSzJ8qfnCYjdBLQ9fMsMmicMLWHItJo8jvfDyOnTl+CMaop4NlIv+84zUcgY0IX1GQvSi6mu5yzCJJJ5cHmnnsKAmcDusE5CyCHPvLgc33PEW+S0Pr9L/5cuvmYf0aHzxg8VbFoAz4K/gmFCcxo9ULz0WHkjzm8ayVTtUcreuHuz0O+3Q+JmZIo0ncakC6tYtEG/sxbICJSGDG5KK6N3H3OKsjgo9V15LzF5NWOz8PI1/sHnJooKqeDtYxFGyHHlZAooLCo7/dxp+MzHamoogAi6ceFhioW7eDPeQtkdPNJSsPXVSzaqP/8+O6NbGQjG1kX+Q1P+OGnYaCXpgAAAABJRU5ErkJggg==" alt="QR (텍스트: 계좌 + 이름)">
+        </div>
+      </div>
+
+      <div class="foot">
+        <span>이 페이지는 어떤 정보도 수집하지 않습니다.</span>
+        <button class="ghost" id="shareBtn">공유</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">복사되었습니다</div>
+
+  <script>
+    const acc = document.getElementById('acc').textContent.trim();
+    const nameV = document.getElementById('name').textContent.trim();
+    const toast = document.getElementById('toast');
+
+    function showToast(txt='복사되었습니다'){
+      toast.textContent = txt;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 1400);
+    }
+    async function copy(text){
+      try{ await navigator.clipboard.writeText(text); showToast(); }
+      catch{ prompt('아래 내용을 직접 복사하세요:', text); }
+    }
+    document.getElementById('copyAcc').addEventListener('click', ()=>copy(acc));
+    document.getElementById('copyName').addEventListener('click', ()=>copy(nameV));
+    document.getElementById('copyBothNL').addEventListener('click', ()=>copy(acc + '\\n' + nameV));
+    document.getElementById('copyBothTAB').addEventListener('click', ()=>copy(acc + '\\t' + nameV));
+
+    const shareBtn = document.getElementById('shareBtn');
+    if(navigator.share){
+      shareBtn.addEventListener('click', ()=>{
+        navigator.share({ title:'입금 안내 (ANZ)', text: acc + '\\n' + nameV });
+      });
+    }else{
+      shareBtn.addEventListener('click', ()=>copy(acc + '\\n' + nameV));
+    }
+  </script>
+</body>
+</html>
